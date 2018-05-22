@@ -8,7 +8,7 @@ class Ship():
 		self.ai_settings = ai_settings
 
 		#加载飞船图像并获取其外接矩形
-		self.image = pygame.image.load(r'images\ship.bmp') #Windows用“\” 前面+“r”来不转义处理,Linux MacOs用“/”
+		self.image = pygame.image.load('images/ship.bmp') #Windows用“\” 前面+“r”来不转义处理,Linux MacOs用“/”
 		self.rect = self.image.get_rect()
 		self.screen_rect = screen.get_rect()
 
