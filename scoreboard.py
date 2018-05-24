@@ -15,7 +15,7 @@ class Scoreboard():
 
 		#显示得分信息时使用的字体设置
 		self.text_color = (0,0,0)
-		self.font = pygame.font.SysFont(None, 48)
+		self.font = pygame.font.SysFont(None, 30)
 
 		#准备初始得分图像
 		self.prep_score()
@@ -33,7 +33,7 @@ class Scoreboard():
 		#将得分放在屏幕右上角
 		self.score_rect = self.score_image.get_rect()
 		self.score_rect.right = self.screen_rect.right - 20
-		self.score_rect.top = 20
+		self.score_rect.top = 0
 
 	def prep_high_score(self):
 		'''将最高得分转换为一幅渲染的图像'''
@@ -44,7 +44,7 @@ class Scoreboard():
 
 		#将最高得分放在屏幕顶部中央
 		self.high_score_rect = self.high_score_image.get_rect()
-		self.high_score_rect.left = self.screen_rect.centerx - 50
+		self.high_score_rect.left = self.screen_rect.centerx - 100
 		self.high_score_rect.top = self.score_rect.top
 
 	def prep_level(self):
@@ -63,7 +63,7 @@ class Scoreboard():
 		for ship_number in range(self.stats.ships_left):
 			ship = Ship(self.ai_settings, self.screen)
 			ship.rect.x = 10 + ship_number * ship.rect.width
-			ship.rect.y = 10
+			ship.rect.y = 0
 			self.ships.add(ship)
 
 	def show_score(self):

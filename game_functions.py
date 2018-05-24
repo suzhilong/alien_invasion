@@ -159,7 +159,7 @@ def get_number_aliens_x(ai_settings, alien_width):
 
 def get_number_rows(ai_settings, ship_hight, alien_height):
 	'''计算屏幕可以容纳多少外星人'''
-	available_space_y = (ai_settings.screen_height - (3 * alien_height) - ship_hight)
+	available_space_y = (ai_settings.screen_height - (5 * alien_height) - ship_hight)
 	number_rows = int(available_space_y / (2 * alien_height))
 	return number_rows
 
