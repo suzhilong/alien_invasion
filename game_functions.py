@@ -2,6 +2,7 @@ import sys
 from time import sleep
 
 import pygame
+import json
 
 from bullet import Bullet
 from alien import Alien
@@ -15,6 +16,9 @@ def check_keydown_events(event, ai_settings, screen, ship, bullets):
 	elif event.key == pygame.K_SPACE:
 		fire_bullet(ai_settings, screen, ship, bullets)
 	elif event.key == pygame.K_q:
+		#写入最高分
+
+
 		sys.exit()
 
 def fire_bullet(ai_settings, screen, ship, bullets):
@@ -37,6 +41,8 @@ def check_events(ai_settings, screen, stats, sb, play_button, ship, aliens,
 	'''响应按键和鼠标事件'''
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
+			#写入最高分
+
 			sys.exit()
 
 		elif event.type == pygame.KEYDOWN:
