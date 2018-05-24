@@ -7,7 +7,7 @@ import json
 from bullet import Bullet
 from alien import Alien
 
-def check_keydown_events(event, ai_settings, screen, ship, bullets):
+def check_keydown_events(event, ai_settings, screen, ship, bullets ,stats):
 	'''响应按键'''
 	if event.key == pygame.K_RIGHT:
 		ship.moving_right = True
@@ -17,7 +17,10 @@ def check_keydown_events(event, ai_settings, screen, ship, bullets):
 		fire_bullet(ai_settings, screen, ship, bullets)
 	elif event.key == pygame.K_q:
 		#写入最高分
-
+		record_old = get_record()
+		record_new = stats.high_score
+		if record_new > record_old:
+			save_record(record_new)
 
 		sys.exit()
 
@@ -42,11 +45,15 @@ def check_events(ai_settings, screen, stats, sb, play_button, ship, aliens,
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			#写入最高分
+			record_old = get_record()
+			record_new = stats.high_score
+			if record_new > record_old:
+				save_record(record_new)
 
 			sys.exit()
 
 		elif event.type == pygame.KEYDOWN:
-			check_keydown_events(event, ai_settings, screen, ship, bullets)
+			check_keydown_events(event, ai_settings, screen, ship, bullets ,stats)
 
 		elif event.type == pygame.KEYUP:
 			check_keyup_events(event, ship)
@@ -245,3 +252,16 @@ def check_high_score(stats, sb):
 	if stats.score > stats.high_score:
 		stats.high_score = stats.score
 		sb.prep_high_score()
+
+def save_record(record):
+	'''最高纪录存储到文件'''
+	filename = 'record.json'
+	with open(filename, 'w') as record_obj:
+		json.dump(record, record_obj)
+
+def get_record():
+	'''从文件读取最高纪录'''
+	filename = 'record.json'
+	with open(filename) as record_obj:
+		record = json.load(record_obj)
+	return record
